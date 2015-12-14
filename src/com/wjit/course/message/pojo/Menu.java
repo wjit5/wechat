@@ -6,7 +6,7 @@ package com.wjit.course.message.pojo;
  * @date 2015-12-11
  */
 public class Menu {
-	private Button[] button;
+	private Button[] button; 
 
 	public Button[] getButton() {
 		return button;

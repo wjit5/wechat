@@ -5,8 +5,8 @@ package com.wjit.course.message.pojo;
  * @author WANGJIAN
  * @date 2015-12-11
  */
-public class AccessToken {
-	 // 获取到的凭证  
+public class AccessToken {  
+    // 获取到的凭证  
     private String token;  
     // 凭证有效时间，单位：秒  
     private int expiresIn;  
@@ -26,4 +26,4 @@ public class AccessToken {
     public void setExpiresIn(int expiresIn) {  
         this.expiresIn = expiresIn;  
     }  
-}
+}  
