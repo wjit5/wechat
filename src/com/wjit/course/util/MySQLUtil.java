@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.wjit.course.message.pojo.Knowledge;
+import com.wjit.course.message.pojo.Picture;
 
 /**
  * 操作数据库
@@ -22,9 +23,9 @@ public class MySQLUtil {
 	 * @return Connection
 	 */
 	private Connection getConn() {
-		String url = "";
-		String username = "";
-		String password = "";
+		String url = "jdbc:mysql://123.57.92.114:3306/weixin";
+		String username = "root";
+		String password = "root";
 		Connection conn = null;
 		try {
 			// 加载MySQL驱动
@@ -44,7 +45,7 @@ public class MySQLUtil {
 	 * @param ps
 	 * @param rs 记录集
 	 */
-	private void releaseResources(Connection conn, PreparedStatement ps, ResultSet rs) {
+	public void releaseResources(Connection conn, PreparedStatement ps, ResultSet rs) {
 		try {
 			if (null != rs)
 				rs.close();
@@ -55,6 +56,44 @@ public class MySQLUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 获取图片表中的信息
+	 * 
+	 * Picture
+	 * @param picId
+	 * @param flag
+	 * @return
+	 *
+	 */
+	public static List<Picture> getaAllPicture(String picId,String flag){
+		List<Picture> picList=new ArrayList<Picture>();
+		String sql="select * from picture p where p.picId=" + picId +"and p.flag="+flag;
+		MySQLUtil mysqlUtil = new MySQLUtil();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = mysqlUtil.getConn();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Picture picture=new Picture();
+				picture.setId(rs.getInt("id"));
+				picture.setPicId(rs.getString("picId"));
+				picture.setPicUrl(rs.getString("picUrl"));
+				picture.setDescription(rs.getString("description"));
+				picture.setFlag(rs.getString("flag"));
+				picList.add(picture);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 释放资源
+			mysqlUtil.releaseResources(conn, ps, rs);
+		}
+		 return picList;
 	}
 
 	/**
