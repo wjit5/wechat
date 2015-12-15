@@ -185,9 +185,9 @@ public class CoreService {
                       textMessage2.setCreateTime(new Date().getTime());  
                       textMessage2.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
                       textMessage2.setContent(apiresult);
-                      textMessage.setFuncFlag(0);  
+                      textMessage2.setFuncFlag(0);  
                       //将文本消息对象转换成xml字符串
-                      respMessage=MessageUtil.textMessageToXml(textMessage);
+                      respMessage=MessageUtil.textMessageToXml(textMessage2);
                 }
             }  
             // 图片消息  
