@@ -53,7 +53,7 @@ public class CoreService {
 			textMessage.setFromUserName(toUserName);
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-			textMessage.setContent("欢迎关注小剑。。。\n");
+			textMessage.setContent("欢迎关注小剑。。。\n"+getMainMenu());
 			textMessage.setFuncFlag(0);
 			// 将文本消息对象转换成xml字符串
 			respMessage = MessageUtil.textMessageToXml(textMessage);
@@ -196,6 +196,16 @@ public class CoreService {
 			        textMessage.setContent(content);  
 			        // 将文本消息对象转换成xml字符串  
 			        respMessage = MessageUtil.textMessageToXml(textMessage); 
+				} else if("菜单".equals(content)||"帮助".equals(content)||"?".equals(content)||"？".equals(content)){
+					TextMessage textMessage3 = new TextMessage();
+					textMessage3.setToUserName(fromUserName);
+					textMessage3.setFromUserName(toUserName);
+					textMessage3.setCreateTime(new Date().getTime());
+					textMessage3.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+					textMessage3.setContent("欢迎关注小剑。。。\n"+getMainMenu());
+					textMessage3.setFuncFlag(0);
+					// 将文本消息对象转换成xml字符串
+					respMessage = MessageUtil.textMessageToXml(textMessage3);
 				} else {
 					// 其他问题
 					TextMessage textMessage3 = new TextMessage();
@@ -395,9 +405,9 @@ public class CoreService {
 		// TODO Auto-generated method stub
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("您好，我是小剑，请回复数字选择服务：").append("\n\n");
-		buffer.append("1     户外活动").append("\n");
-		buffer.append("2     聚餐活动").append("\n");
-		buffer.append("3     报名参加").append("\n");
+		buffer.append("1     户外活动(未开放)").append("\n");
+		buffer.append("2     聚餐活动(未开放)").append("\n");
+		buffer.append("3     报名参加(未开放)").append("\n");
 		buffer.append("4     户外攻略").append("\n");
 		buffer.append("5     笑话连篇").append("\n");
 		buffer.append("6     推理故事").append("\n");
