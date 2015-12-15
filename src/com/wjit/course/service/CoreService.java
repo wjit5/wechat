@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.wjit.course.api.TulingApiProcess;
 import com.wjit.course.message.resp.Article;
 import com.wjit.course.message.resp.ImageMessage;
 import com.wjit.course.message.resp.NewsMessage;
@@ -177,13 +178,17 @@ public class CoreService {
                     newsMessage.setArticles(articleList);  
                     respMessage = MessageUtil.newsMessageToXml(newsMessage); 
                 }else{
-                	
-                	
-                	
-                	
-                	
+                	  TextMessage textMessage2 = new TextMessage();  
+                	  String apiresult=new TulingApiProcess().getTulingResult(content);
+                      textMessage2.setToUserName(fromUserName);  
+                      textMessage2.setFromUserName(toUserName);  
+                      textMessage2.setCreateTime(new Date().getTime());  
+                      textMessage2.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+                      textMessage2.setContent(apiresult);
+                      textMessage.setFuncFlag(0);  
+                      //将文本消息对象转换成xml字符串
+                      respMessage=MessageUtil.textMessageToXml(textMessage);
                 }
-                
             }  
             // 图片消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {  
