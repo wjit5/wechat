@@ -15,6 +15,7 @@ import com.wjit.course.message.resp.NewsMessage;
 import com.wjit.course.message.resp.TextMessage;
 import com.wjit.course.util.MessageUtil;
 import com.wjit.course.util.MySQLUtil;
+import com.wjit.course.util.WeixinUtil;
 
 /**
  * 核心服务类
@@ -179,24 +180,35 @@ public class CoreService {
 					article1.setDescription("通过QQ群联系或者微信群联系我们");
 					article1.setPicUrl("");
 					article1.setUrl("");
-
 					articleList.add(article1);
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
 					respMessage = MessageUtil.newsMessageToXml(newsMessage);
+				} else if(WeixinUtil.isQqFace(content)){
+					// 回复文本消息  
+			        TextMessage textMessage2 = new TextMessage();  
+			        textMessage2.setToUserName(fromUserName);  
+			        textMessage2.setFromUserName(toUserName);  
+			        textMessage2.setCreateTime(new Date().getTime());  
+			        textMessage2.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+			        textMessage2.setFuncFlag(0);  
+			        // 用户发什么QQ表情，就返回什么QQ表情  
+			        textMessage.setContent(content);  
+			        // 将文本消息对象转换成xml字符串  
+			        respMessage = MessageUtil.textMessageToXml(textMessage); 
 				} else {
 					// 其他问题
-					TextMessage textMessage2 = new TextMessage();
+					TextMessage textMessage3 = new TextMessage();
 					String apiresult = new TulingApiProcess()
 							.getTulingResult(content);
-					textMessage2.setToUserName(fromUserName);
-					textMessage2.setFromUserName(toUserName);
-					textMessage2.setCreateTime(new Date().getTime());
-					textMessage2.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-					textMessage2.setContent(apiresult);
-					textMessage2.setFuncFlag(0);
+					textMessage3.setToUserName(fromUserName);
+					textMessage3.setFromUserName(toUserName);
+					textMessage3.setCreateTime(new Date().getTime());
+					textMessage3.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+					textMessage3.setContent(apiresult);
+					textMessage3.setFuncFlag(0);
 					// 将文本消息对象转换成xml字符串
-					respMessage = MessageUtil.textMessageToXml(textMessage2);
+					respMessage = MessageUtil.textMessageToXml(textMessage3);
 				}
 			}
 			// 图片消息
@@ -398,8 +410,4 @@ public class CoreService {
 
 	}
 
-	private static String emoji(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
