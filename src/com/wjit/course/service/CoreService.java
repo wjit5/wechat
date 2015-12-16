@@ -142,7 +142,7 @@ public class CoreService {
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
 					respMessage = MessageUtil.newsMessageToXml(newsMessage);
-				} else if ("7".equals(content)) { // 多图文消息
+				} else if ("7".equals(content)||"游戏".equals(content)||"游戏中心".equals(content)) { // 多图文消息
 					// 游戏中心
 					Article article1 = new Article();
 					article1.setTitle("《2048》");
