@@ -1,4 +1,4 @@
-package com.wjit.course.api;
+package com.wjit.course.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -11,8 +11,14 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-public class TulingApiProcess {
+/**
+ * 智能回复服务
+ * 调用图灵机器人api接口
+ * 
+ * @author WANGJIAN
+ * @date 2015-12-16
+ */
+public class TulingService {
 	 /** 
      * 调用图灵机器人api接口，获取智能回复内容，解析获取自己所需结果 
      * @param content 
@@ -59,4 +65,4 @@ public class TulingApiProcess {
         }  
         return result;  
     }  
-}  
+}

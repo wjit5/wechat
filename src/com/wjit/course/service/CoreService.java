@@ -7,14 +7,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.wjit.course.api.TulingApiProcess;
-import com.wjit.course.message.pojo.Picture;
 import com.wjit.course.message.resp.Article;
-import com.wjit.course.message.resp.ImageMessage;
 import com.wjit.course.message.resp.NewsMessage;
 import com.wjit.course.message.resp.TextMessage;
 import com.wjit.course.util.MessageUtil;
-import com.wjit.course.util.MySQLUtil;
 import com.wjit.course.util.WeixinUtil;
 
 /**
@@ -209,7 +205,7 @@ public class CoreService {
 				} else {
 					// 其他问题
 					TextMessage textMessage3 = new TextMessage();
-					String apiresult = new TulingApiProcess()
+					String apiresult = new TulingService()
 							.getTulingResult(content);
 					textMessage3.setToUserName(fromUserName);
 					textMessage3.setFromUserName(toUserName);
