@@ -8,6 +8,7 @@ import com.wjit.course.message.pojo.Button;
 import com.wjit.course.message.pojo.CommonButton;
 import com.wjit.course.message.pojo.ComplexButton;
 import com.wjit.course.message.pojo.Menu;
+import com.wjit.course.message.pojo.ViewButton;
 import com.wjit.course.util.WeixinUtil;
 /**
  * 菜单管理器类
@@ -45,22 +46,22 @@ public class MenuManager {
 	private static Menu getMenu() {
 		// TODO Auto-generated method stub
 		//二级菜单
-		CommonButton btn11 = new CommonButton();
+		ViewButton btn11=new ViewButton();
 		btn11.setName("户外活动");
-		btn11.setType("click");
-		btn11.setKey("11");
-		CommonButton btn12 = new CommonButton();
-		btn12.setName("聚餐");
-		btn12.setType("click");
-		btn12.setKey("12");
-		CommonButton btn13 = new CommonButton();
+		btn11.setType("view");
+		btn11.setUrl("www.baidu.com");
+		ViewButton btn12=new ViewButton();
+		btn12.setName("聚餐活动");
+		btn12.setType("view");
+		btn12.setUrl("www.baidu.com");
+		ViewButton btn13=new ViewButton();
 		btn13.setName("活动报名");
-		btn13.setType("click");
-		btn13.setKey("13");
-		CommonButton btn14 = new CommonButton();
+		btn13.setType("view");
+		btn13.setUrl("www.baidu.com");
+		ViewButton btn14=new ViewButton();
 		btn14.setName("户外攻略");
-		btn14.setType("click");
-		btn14.setKey("14");
+		btn14.setType("view");
+		btn14.setUrl("http://www.lvye.cn/knowledge/");
 		CommonButton btn21 = new CommonButton();
 		btn21.setName("笑话连篇");
 		btn21.setType("click");
@@ -92,7 +93,7 @@ public class MenuManager {
 		//一级菜单
 		ComplexButton mainBtn1 = new ComplexButton();
 		mainBtn1.setName("活动中心");
-		mainBtn1.setSub_button(new CommonButton[] { btn11, btn12, btn13, btn14 });
+		mainBtn1.setSub_button(new Button[] { btn11, btn12, btn13, btn14 });
 
 		ComplexButton mainBtn2 = new ComplexButton();
 		mainBtn2.setName("休闲一刻");
