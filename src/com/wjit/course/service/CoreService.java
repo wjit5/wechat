@@ -145,13 +145,43 @@ public class CoreService {
 				} else if ("7".equals(content)) { // 多图文消息
 					// 游戏中心
 					Article article1 = new Article();
-					article1.setTitle("游戏中心");
-					article1.setDescription("小游戏");
+					article1.setTitle("《2048》");
+					article1.setDescription("《2048》");
 					article1
 							.setPicUrl("http://cdn.sinacloud.net/marsimage/image/a08b87d6277f9e2f5bd0900a1c30e924b999f3cf.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172863&ssig=UIjvrXQE%2FC");
 					article1.setUrl("http://123.57.92.114/2048/");
-
+					Article article2 = new Article();
+					article2.setTitle("《神奇的六边形》");
+					article2.setDescription("《神奇的六边形》");
+					article2
+							.setPicUrl("");
+					article1.setUrl("http://engine.zuoyouxi.com/demo/game/hexagon/index.php");
+					
+					Article article3 = new Article();
+					article3.setTitle("《蛇精病》");
+					article3.setDescription("《蛇精病》");
+					article3
+							.setPicUrl("");
+					article1.setUrl("http://engine.zuoyouxi.com/game/snake/index.php?from=timeline&isappinstalled=0");
+					
+					Article article4 = new Article();
+					article4.setTitle(" 《跳跃的方块》 ");
+					article4.setDescription(" 《跳跃的方块》 ");
+					article4
+							.setPicUrl("");
+					article1.setUrl("http://engine.zuoyouxi.com/game/JumpingBrick/index.php");
+					
+					Article article5 = new Article();
+					article5.setTitle("《2187》");
+					article5.setDescription("《2187》》");
+					article5
+							.setPicUrl("");
+					article1.setUrl("http://engine.zuoyouxi.com/game/2187/index.html");
 					articleList.add(article1);
+					articleList.add(article2);
+					articleList.add(article3);
+					articleList.add(article4);
+					articleList.add(article5);
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
 					respMessage = MessageUtil.newsMessageToXml(newsMessage);
