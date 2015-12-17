@@ -9,6 +9,9 @@ import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +30,8 @@ import org.slf4j.LoggerFactory;
 import com.wjit.course.message.pojo.AccessToken;
 import com.wjit.course.message.pojo.Menu;
 import com.wjit.course.message.pojo.MyX509TrustManager;
+import com.wjit.course.message.resp.Article;
+import com.wjit.course.message.resp.TextMessage;
 
 /**
  * 公众平台通用接口工具类
@@ -188,6 +193,158 @@ public class WeixinUtil {
 	        result = true;  
 	    }  
 	    return result;  
-	}  
+	} 
+	/**
+	 * 判断是否是回复关键字
+	 * @param content
+	 * @return
+	 *
+	 */
+	public static boolean isMenuNumer(String content){
+		boolean result=false;
+		String MenuNumber="1|2|3|4|5|6|7|8|9|菜单|?|？|帮助|户外活动|活动列表|聚餐活动|报名参加|参加|报名|户外安全|户外攻略|攻略|笑话|开心一刻|推理|推理中心|视频|视频中心|游戏|游戏中心|联系我们|联系|";
+		 Pattern p = Pattern.compile(MenuNumber);  
+		    Matcher m = p.matcher(content);  
+		    if (m.matches()) {  
+		        result = true;  
+		    }  
+		    return result;  
+	}
+	/**
+	 * 回复req是文本消息
+	 * 
+	 * @param content
+	 * @return
+	 *
+	 */
+	public static List<Article> getTextResp(String content){
+		List<Article> articleList=new ArrayList<Article>();
+		if("1".equals(content.trim()) || "户外".equals(content.trim())|| "户外活动".equals(content.trim()) || "列表".equals(content.trim())){
+			
+			Article article1 = new Article();
+			article1.setTitle("户外标题");
+			article1.setDescription("描述");
+			article1.setPicUrl("照片地址");
+			article1.setUrl("文档地址");
+			
+			articleList.add(article1);
+		}else if ("2".equals(content) || "聚餐".equals(content)
+				|| "吃饭".equals(content) || "聚餐活动".equals(content)) { // 单图文消息
+			// ---不含图片
+			// 聚餐活动列表
+			Article article1 = new Article();
+			article1.setTitle("聚餐标题");
+			article1.setDescription("描述");
+			article1.setPicUrl("图片地址");
+			article1.setUrl("文档地址");
+			articleList.add(article1);
+			
+		} else if ("3".equals(content) || "报名".equals(content)
+				|| "报名参加".equals(content) || "参加".equals(content)) { // 多图文消息
+			// 报名参加
+			Article article1 = new Article();
+			article1.setTitle("报名参加");
+			article1.setDescription("描述");
+			article1.setPicUrl("图片");
+			article1.setUrl("地址");
 
+			articleList.add(article1);
+			
+		} else if ("4".equals(content) || "户外安全".equals(content)
+				|| "安全".equals(content) || "攻略".equals(content)) { // 多图文消息
+			// 户外安全
+			Article article1 = new Article();
+			article1.setTitle("户外攻略");
+			article1.setDescription("户外出行,安全出行最重要");
+			article1.setPicUrl("图片地址");
+			article1.setUrl("http://www.lvye.cn/knowledge/");
+			articleList.add(article1);
+			
+		} else if ("5".equals(content) || "开心一刻".equals(content)
+				|| "笑话".equals(content)) { // 多图文消息
+			// 笑话连篇
+			Article article1 = new Article();
+			article1.setTitle("开心一刻");
+			article1.setDescription("开心一刻");
+			article1
+					.setPicUrl("http://cdn.sinacloud.net/marsimage/image/82d6493729.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172359&ssig=ozEfIS7DQk");
+			article1.setUrl("http://www.ihuopo.com/");
+			articleList.add(article1);
+			
+		} else if ("6".equals(content) || "推理".equals(content)
+				|| "推理中心".equals(content)) {
+			Article article1 = new Article();
+			article1.setTitle("推理中心");
+			article1.setDescription("发动你的最强大脑吧！！！");
+			article1
+					.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1b4c510fd9f9d72afea09412d42a2834359bbbfd.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172862&ssig=SvNw8gVLBa");
+			article1.setUrl("http://www.linquan.info/");
+
+			articleList.add(article1);
+			
+		} else if ("7".equals(content)||"游戏".equals(content)||"游戏中心".equals(content)) { // 多图文消息
+			// 游戏中心
+			Article article1 = new Article();
+			article1.setTitle("《2048》");
+			article1.setDescription("《2048》");
+			article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/a08b87d6277f9e2f5bd0900a1c30e924b999f3cf.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172863&ssig=UIjvrXQE%2FC");
+			article1.setUrl("http://123.57.92.114/2048/");
+			
+			Article article2 = new Article();
+			article2.setTitle("《神奇的六边形》");
+			article2.setDescription("《神奇的六边形》");
+			article2.setPicUrl("");
+			article1.setUrl("http://engine.zuoyouxi.com/demo/game/hexagon/index.php");
+			
+			Article article3 = new Article();
+			article3.setTitle("《蛇精病》");
+			article3.setDescription("《蛇精病》");
+			article3
+					.setPicUrl("");
+			article1.setUrl("http://engine.zuoyouxi.com/game/snake/index.php?from=timeline&isappinstalled=0");
+			
+			Article article4 = new Article();
+			article4.setTitle(" 《跳跃的方块》 ");
+			article4.setDescription(" 《跳跃的方块》 ");
+			article4
+					.setPicUrl("");
+			article1.setUrl("http://engine.zuoyouxi.com/game/JumpingBrick/index.php");
+			
+			Article article5 = new Article();
+			article5.setTitle("《2187》");
+			article5.setDescription("《2187》》");
+			article5
+					.setPicUrl("");
+			article1.setUrl("http://engine.zuoyouxi.com/game/2187/index.html");
+			articleList.add(article1);
+			articleList.add(article2);
+			articleList.add(article3);
+			articleList.add(article4);
+			articleList.add(article5);
+			
+		} else if ("8".equals(content)) { // 多图文消息
+			// 视频中心
+			Article article1 = new Article();
+			article1.setTitle("视频中心");
+			article1.setDescription("今年我二十七八");
+			article1
+					.setPicUrl("http://cdn.sinacloud.net/marsimage/image/14ce36d3d539b6009d428e45e950352ac75cb7b0.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450173129&ssig=sVfxTndzbo");
+			article1
+					.setUrl("http://v.qq.com/boke/page/p/0/g/p0157rg55yg.html");
+
+			articleList.add(article1);
+		
+		} else if ("9".equals(content)) { // 多图文消息
+			// 联系我们
+			Article article1 = new Article();
+			article1.setTitle("联系我们");
+			article1.setDescription("通过QQ群联系或者微信群联系我们");
+			article1.setPicUrl("");
+			article1.setUrl("");
+			articleList.add(article1);
+			
+		} 
+		return articleList;
+		
+	}
 }
