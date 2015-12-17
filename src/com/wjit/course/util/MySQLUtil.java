@@ -11,26 +11,25 @@ import com.wjit.course.message.pojo.Knowledge;
 import com.wjit.course.message.pojo.Picture;
 
 /**
- * 操作数据库
- * 
+ * mysql 工具类
  * @author WANGJIAN
- * @date 2015-12-9
+ * @date 2015-12-17
  */
 public class MySQLUtil {
 	/**
-	 * 获取Mysql数据库连接
-	 * 
-	 * @return Connection
+	 * 连接数据库
+	 * @return
+	 *
 	 */
 	private Connection getConn() {
-		String url = "jdbc:mysql://123.57.92.114:3306/weixin";
+		String url = "jdbc:mysql://localhost:3306/weixin";
 		String username = "root";
-		String password = "root";
+		String password = "123456";
 		Connection conn = null;
 		try {
-			// 加载MySQL驱动
+	
 			Class.forName("com.mysql.jdbc.Driver");
-			// 获取数据库连接
+		
 			conn = DriverManager.getConnection(url, username, password);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,13 +37,7 @@ public class MySQLUtil {
 		return conn;
 	}
 
-	/**
-	 * 释放JDBC资源
-	 * 
-	 * @param conn 数据库连接
-	 * @param ps
-	 * @param rs 记录集
-	 */
+	
 	public void releaseResources(Connection conn, PreparedStatement ps, ResultSet rs) {
 		try {
 			if (null != rs)
@@ -59,9 +52,7 @@ public class MySQLUtil {
 	}
 	
 	/**
-	 * 获取图片表中的信息
-	 * 
-	 * Picture
+	 * 根据picid，flag 获取pic
 	 * @param picId
 	 * @param flag
 	 * @return
@@ -69,7 +60,7 @@ public class MySQLUtil {
 	 */
 	public static List<Picture> getaAllPicture(String picId,String flag){
 		List<Picture> picList=new ArrayList<Picture>();
-		String sql="select * from picture p where p.picId=" + picId +"and p.flag="+flag;
+		String sql="select * from picture where picid=" + picId +" and flag='"+flag+"'" ;
 		MySQLUtil mysqlUtil = new MySQLUtil();
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -81,8 +72,8 @@ public class MySQLUtil {
 			while (rs.next()) {
 				Picture picture=new Picture();
 				picture.setId(rs.getInt("id"));
-				picture.setPicId(rs.getString("picId"));
-				picture.setPicUrl(rs.getString("picUrl"));
+				picture.setPicId(rs.getString("picid"));
+				picture.setPicUrl(rs.getString("picurl"));
 				picture.setDescription(rs.getString("description"));
 				picture.setFlag(rs.getString("flag"));
 				picList.add(picture);
@@ -90,17 +81,13 @@ public class MySQLUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 释放资源
+			
 			mysqlUtil.releaseResources(conn, ps, rs);
 		}
 		 return picList;
 	}
 
-	/**
-	 * 获取问答知识表中所有记录
-	 * 
-	 * @return List<Knowledge>
-	 */
+
 	public static List<Knowledge> findAllKnowledge() {
 		List<Knowledge> knowledgeList = new ArrayList<Knowledge>();
 		String sql = "select * from knowledge";
@@ -123,18 +110,13 @@ public class MySQLUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 释放资源
+		
 			mysqlUtil.releaseResources(conn, ps, rs);
 		}
 		return knowledgeList;
 	}
 
-	/**
-	 * 获取上一次的聊天类别
-	 * 
-	 * @param openId 用户的OpenID
-	 * @return chatCategory
-	 */
+	
 	public static int getLastCategory(String openId) {
 		int chatCategory = -1;
 		String sql = "select chat_category from chat_log where open_id=? order by id desc limit 0,1";
@@ -154,18 +136,13 @@ public class MySQLUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 释放资源
+			
 			mysqlUtil.releaseResources(conn, ps, rs);
 		}
 		return chatCategory;
 	}
 
-	/**
-	 * 根据知识id随机获取一个答案
-	 * 
-	 * @param knowledgeId 问答知识id
-	 * @return
-	 */
+	
 	public static String getKnowledSub(int knowledgeId) {
 		String knowledgeAnswer = "";
 		String sql = "select answer from knowledge_sub where pid=? order by rand() limit 0,1";
@@ -185,17 +162,13 @@ public class MySQLUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 释放资源
+			// 锟酵凤拷锟斤拷源
 			mysqlUtil.releaseResources(conn, ps, rs);
 		}
 		return knowledgeAnswer;
 	}
 
-	/**
-	 * 随机获取一条笑话
-	 * 
-	 * @return String
-	 */
+	
 	public static String getJoke() {
 		String jokeContent = "";
 		String sql = "select joke_content from joke order by rand() limit 0,1";
@@ -214,21 +187,13 @@ public class MySQLUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 释放资源
+			
 			mysqlUtil.releaseResources(conn, ps, rs);
 		}
 		return jokeContent;
 	}
 
-	/**
-	 * 保存聊天记录
-	 * 
-	 * @param openId 用户的OpenID
-	 * @param createTime 消息创建时间
-	 * @param reqMsg 用户上行的消息
-	 * @param respMsg 公众账号回复的消息
-	 * @param chatCategory 聊天类别
-	 */
+	
 	public static void saveChatLog(String openId, String createTime, String reqMsg, String respMsg, int chatCategory) {
 		String sql = "insert into chat_log(open_id, create_time, req_msg, resp_msg, chat_category) values(?, ?, ?, ?, ?)";
 
@@ -248,7 +213,7 @@ public class MySQLUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// 释放资源
+			// 锟酵凤拷锟斤拷源
 			mysqlUtil.releaseResources(conn, ps, rs);
 		}
 	}

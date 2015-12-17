@@ -3,6 +3,8 @@ package com.wjit.course.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wjit.course.message.pojo.Picture;
+import com.wjit.course.util.MySQLUtil;
 import com.wjit.course.util.WeixinUtil;
 
 public class testResp {
@@ -13,15 +15,11 @@ public class testResp {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String a="²Ëµ¥";
 		
-		List<Test> list=new ArrayList<Test>();
-		if(a!=null){
-			list=TestUtil.getTest(a);
-			boolean b=TestUtil.isQqFace(a);
-			System.out.println(list.get(0).name);
-			System.out.println(b);
-		}
+		String picid="1";
+		String flag="æŸ¥è¯¢";
+		List<Picture> list=MySQLUtil.getaAllPicture(picid,flag);
+		System.out.println(list.get(0).getDescription());
 	}
 
 }

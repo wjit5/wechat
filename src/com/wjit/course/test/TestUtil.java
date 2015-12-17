@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.wjit.course.message.pojo.Picture;
+
 public class TestUtil {
 	public static List<Test> getTest(String te){
 		List<Test> list=new ArrayList<Test>();
@@ -27,4 +29,5 @@ public class TestUtil {
 	    }  
 	    return result;  
 	}  
+
 }
