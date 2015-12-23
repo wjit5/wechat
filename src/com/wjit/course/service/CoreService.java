@@ -150,20 +150,19 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("户外标题");
 						article1.setDescription("描述");
-						article1.setPicUrl("照片地址");
-						article1.setUrl("文档地址");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://www.baidu.com");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
 						respContent = MessageUtil.newsMessageToXml(newsMessage);
 					} else if (eventKey.equals("12")) {
 						// 聚餐活动列表
-						// 聚餐活动列表
 						Article article1 = new Article();
 						article1.setTitle("聚餐标题");
 						article1.setDescription("描述");
-						article1.setPicUrl("图片地址");
-						article1.setUrl("文档地址");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://www.baidu.com");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
@@ -173,8 +172,8 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("报名参加");
 						article1.setDescription("描述");
-						article1.setPicUrl("图片");
-						article1.setUrl("地址");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://www.baidu.com");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
@@ -184,7 +183,7 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("户外攻略");
 						article1.setDescription("户外出行,安全出行最重要");
-						article1.setPicUrl("图片地址");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						article1.setUrl("http://www.lvye.cn/knowledge/");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
@@ -195,8 +194,7 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("开心一刻");
 						article1.setDescription("开心一刻");
-						article1
-								.setPicUrl("http://cdn.sinacloud.net/marsimage/image/82d6493729.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172359&ssig=ozEfIS7DQk");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						article1.setUrl("http://www.ihuopo.com/");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
@@ -207,8 +205,7 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("推理中心");
 						article1.setDescription("发动你的最强大脑吧！！！");
-						article1
-								.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1b4c510fd9f9d72afea09412d42a2834359bbbfd.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172862&ssig=SvNw8gVLBa");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						article1.setUrl("http://www.linquan.info/");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
@@ -220,8 +217,7 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("游戏中心");
 						article1.setDescription("小游戏");
-						article1
-								.setPicUrl("http://cdn.sinacloud.net/marsimage/image/a08b87d6277f9e2f5bd0900a1c30e924b999f3cf.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450172863&ssig=UIjvrXQE%2FC");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						article1.setUrl("http://123.57.92.114/2048/");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
@@ -232,10 +228,8 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("视频中心");
 						article1.setDescription("今年我二十七八");
-						article1
-								.setPicUrl("http://cdn.sinacloud.net/marsimage/image/14ce36d3d539b6009d428e45e950352ac75cb7b0.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450173129&ssig=sVfxTndzbo");
-						article1
-								.setUrl("http://v.qq.com/boke/page/p/0/g/p0157rg55yg.html");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://v.qq.com/boke/page/p/0/g/p0157rg55yg.html");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
@@ -245,8 +239,8 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("联系我们");
 						article1.setDescription("通过QQ群联系或者微信群联系我们");
-						article1.setPicUrl("");
-						article1.setUrl("");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
@@ -256,8 +250,8 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("联系我们");
 						article1.setDescription("通过QQ群联系或者微信群联系我们");
-						article1.setPicUrl("");
-						article1.setUrl("");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
@@ -267,8 +261,8 @@ public class CoreService {
 						Article article1 = new Article();
 						article1.setTitle("联系我们");
 						article1.setDescription("通过QQ群联系或者微信群联系我们");
-						article1.setPicUrl("");
-						article1.setUrl("");
+						article1.setPicUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
+						article1.setUrl("http://cdn.sinacloud.net/marsimage/image/1045206887.jpg?KID=sina,2nflrznN0mp5MsuSndwC&Expires=1450838516&ssig=NDTcKRKchz");
 						articleList1.add(article1);
 						newsMessage.setArticleCount(articleList1.size());
 						newsMessage.setArticles(articleList1);
