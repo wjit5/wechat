@@ -32,6 +32,8 @@ import com.wjit.course.message.pojo.Menu;
 import com.wjit.course.message.pojo.MyX509TrustManager;
 import com.wjit.course.message.resp.Article;
 import com.wjit.course.message.resp.TextMessage;
+import com.wjit.course.service.activity.ChoujiangService;
+
 
 /**
  * 公众平台通用接口工具类
@@ -175,41 +177,7 @@ public class WeixinUtil {
 
 		return result;
 	}
-	/**
-	 * 判断是否是QQ表情
-	 * 
-	 * @param content
-	 * @return
-	 *
-	 */
-	public static boolean isQqFace(String content) {  
-	    boolean result = false;  
-	  
-	    // 判断QQ表情的正则表达式  
-	    String qqfaceRegex = "/::\\)|/::~|/::B|/::\\||/:8-\\)|/::<|/::$|/::X|/::Z|/::'\\(|/::-\\||/::@|/::P|/::D|/::O|/::\\(|/::\\+|/:--b|/::Q|/::T|/:,@P|/:,@-D|/::d|/:,@o|/::g|/:\\|-\\)|/::!|/::L|/::>|/::,@|/:,@f|/::-S|/:\\?|/:,@x|/:,@@|/::8|/:,@!|/:!!!|/:xx|/:bye|/:wipe|/:dig|/:handclap|/:&-\\(|/:B-\\)|/:<@|/:@>|/::-O|/:>-\\||/:P-\\(|/::'\\||/:X-\\)|/::\\*|/:@x|/:8\\*|/:pd|/:<W>|/:beer|/:basketb|/:oo|/:coffee|/:eat|/:pig|/:rose|/:fade|/:showlove|/:heart|/:break|/:cake|/:li|/:bome|/:kn|/:footb|/:ladybug|/:shit|/:moon|/:sun|/:gift|/:hug|/:strong|/:weak|/:share|/:v|/:@\\)|/:jj|/:@@|/:bad|/:lvu|/:no|/:ok|/:love|/:<L>|/:jump|/:shake|/:<O>|/:circle|/:kotow|/:turn|/:skip|/:oY|/:#-0|/:hiphot|/:kiss|/:<&|/:&>";  
-	    Pattern p = Pattern.compile(qqfaceRegex);  
-	    Matcher m = p.matcher(content);  
-	    if (m.matches()) {  
-	        result = true;  
-	    }  
-	    return result;  
-	} 
-	/**
-	 * 判断是否是回复关键字
-	 * @param content
-	 * @return
-	 *
-	 */
-	public static boolean isMenuNumer(String content){
-		boolean result=false;
-		String MenuNumber="抽奖|礼物|圣诞礼物|1|2|3|4|5|6|7|8|9|菜单|?|？|帮助|户外活动|活动列表|聚餐活动|报名参加|参加|报名|户外安全|户外攻略|攻略|笑话|开心一刻|推理|推理中心|视频|视频中心|游戏|游戏中心|联系我们|联系|";
-		 Pattern p = Pattern.compile(MenuNumber);  
-		    Matcher m = p.matcher(content);  
-		    if (m.matches()) {  
-		        result = true;  
-		    }  
-		    return result;  
-	}
+	
 	/**
 	 * 获取服务菜单提示
 	 * 
@@ -232,25 +200,25 @@ public class WeixinUtil {
 		buffer.append("10  您也可以通过菜单栏选择需要的服务 ").append("\n\n");
 		buffer.append("回复“?”显示此帮助菜单");
 		return buffer.toString();
-
 	}
+	
+	
 	/**
-	 * 回复req是文本消息
+	 * 根据菜单上的数字关键字回复相应内容
 	 * 
 	 * @param content
 	 * @return
 	 *
 	 */
 	public static List<Article> getTextResp(List<Object> list){
-		List<Article> articleList=new ArrayList<Article>();
+		List articleList=new ArrayList();
 		String content=(String) list.get(2);
 		if("1".equals(content.trim()) || "户外".equals(content.trim())|| "户外活动".equals(content.trim()) || "列表".equals(content.trim())){
 			Article article1 = new Article();
 			article1.setTitle("户外标题");
 			article1.setDescription("描述");
-			article1.setPicUrl("照片地址");
-			article1.setUrl("文档地址");
-			
+			article1.setPicUrl("http://www.baidu.com");
+			article1.setUrl("http://www.baidu.com");
 			articleList.add(article1);
 		}else if ("2".equals(content) || "聚餐".equals(content) || "吃饭".equals(content) || "聚餐活动".equals(content)) { // 单图文消息
 			// ---不含图片
@@ -258,8 +226,8 @@ public class WeixinUtil {
 			Article article1 = new Article();
 			article1.setTitle("聚餐标题");
 			article1.setDescription("描述");
-			article1.setPicUrl("图片地址");
-			article1.setUrl("文档地址");
+			article1.setPicUrl("http://www.baidu.com");
+			article1.setUrl("http://www.baidu.com");
 			articleList.add(article1);
 			
 		} else if ("3".equals(content) || "报名".equals(content)|| "报名参加".equals(content) || "参加".equals(content)) { // 多图文消息
@@ -267,8 +235,8 @@ public class WeixinUtil {
 			Article article1 = new Article();
 			article1.setTitle("报名参加");
 			article1.setDescription("描述");
-			article1.setPicUrl("图片");
-			article1.setUrl("地址");
+			article1.setPicUrl("http://www.baidu.com");
+			article1.setUrl("http://www.baidu.com");
 
 			articleList.add(article1);
 			
@@ -355,10 +323,108 @@ public class WeixinUtil {
 			articleList.add(article1);
 			
 		} else if("抽奖".equals(content)||"礼物".equals(content)||"圣诞礼物".equals(content)){
-			
+			TextMessage textMessage = new TextMessage();
+			textMessage.setToUserName(list.get(0).toString());
+			textMessage.setFromUserName(list.get(1).toString());
+			textMessage.setCreateTime(new Date().getTime());
+			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+			textMessage.setContent("你好，抽奖现在进行中。。。");
+			textMessage.setFuncFlag(0);
+			// 将文本消息对象转换成xml字符串
+			articleList.add(textMessage);
 			
 		}
 		return articleList;
 		
 	}
+	/**
+	 * 根据回复内容匹配关键字回复相应内容
+	 * 
+	 * @param list
+	 * @return
+	 *
+	 */
+	public static String getKeyWordResp(List<Object> list) {
+		// TODO Auto-generated method stub
+		List<TextMessage> listResp=new ArrayList<TextMessage>();
+		if (WeixinUtil.isQqFace(list.get(2).toString())) {	//回复表情符号
+			TextMessage textMessage = new TextMessage();
+			textMessage.setToUserName(list.get(0).toString());
+			textMessage.setFromUserName(list.get(1).toString());
+			textMessage.setCreateTime(new Date().getTime());
+			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+			textMessage.setFuncFlag(0);
+			// 用户发什么QQ表情，就返回什么QQ表情
+			textMessage.setContent(list.get(2).toString());
+			listResp.add(textMessage);
+		}else if("抽奖".equals(list.get(2).toString())||"礼物".equals(list.get(2).toString())||"圣诞礼物".equals(list.get(2).toString())){
+			TextMessage textMessage = new TextMessage();
+			textMessage.setToUserName(list.get(0).toString());
+			textMessage.setFromUserName(list.get(1).toString());
+			textMessage.setCreateTime(new Date().getTime());
+			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+			textMessage.setFuncFlag(0);
+			//设置回复内容，调用抽奖方法
+			textMessage.setContent(new ChoujiangService().choujMethod(list.get(0).toString()));
+			listResp.add(textMessage);
+		}
+		return listResp.get(0).getContent();
+	}
+	/**
+	 * 判断是否是QQ表情
+	 * 
+	 * @param content
+	 * @return
+	 *
+	 */
+	public static boolean isQqFace(String content) {  
+	    boolean result = false;  
+	  
+	    // 判断QQ表情的正则表达式  
+	    String qqfaceRegex = "/::\\)|/::~|/::B|/::\\||/:8-\\)|/::<|/::$|/::X|/::Z|/::'\\(|/::-\\||/::@|/::P|/::D|/::O|/::\\(|/::\\+|/:--b|/::Q|/::T|/:,@P|/:,@-D|/::d|/:,@o|/::g|/:\\|-\\)|/::!|/::L|/::>|/::,@|/:,@f|/::-S|/:\\?|/:,@x|/:,@@|/::8|/:,@!|/:!!!|/:xx|/:bye|/:wipe|/:dig|/:handclap|/:&-\\(|/:B-\\)|/:<@|/:@>|/::-O|/:>-\\||/:P-\\(|/::'\\||/:X-\\)|/::\\*|/:@x|/:8\\*|/:pd|/:<W>|/:beer|/:basketb|/:oo|/:coffee|/:eat|/:pig|/:rose|/:fade|/:showlove|/:heart|/:break|/:cake|/:li|/:bome|/:kn|/:footb|/:ladybug|/:shit|/:moon|/:sun|/:gift|/:hug|/:strong|/:weak|/:share|/:v|/:@\\)|/:jj|/:@@|/:bad|/:lvu|/:no|/:ok|/:love|/:<L>|/:jump|/:shake|/:<O>|/:circle|/:kotow|/:turn|/:skip|/:oY|/:#-0|/:hiphot|/:kiss|/:<&|/:&>";  
+	    Pattern p = Pattern.compile(qqfaceRegex);  
+	    Matcher m = p.matcher(content);  
+	    if (m.matches()) {  
+	        result = true;  
+	    }  
+	    return result;  
+	} 
+	/**
+	 * 判断是否是菜单关键字
+	 * @param content
+	 * @return
+	 *
+	 */
+	public static boolean isMenuNumer(String content){
+		boolean result=false;
+		String MenuNumber="1|2|3|4|5|6|7|8|9|菜单|?|？|帮助|户外活动|活动列表|聚餐活动|报名参加|参加|报名|户外安全|户外攻略|攻略|笑话|开心一刻|推理|推理中心|视频|视频中心|游戏|游戏中心|联系我们|联系|";
+		 Pattern p = Pattern.compile(MenuNumber);  
+		    Matcher m = p.matcher(content);  
+		    if (m.matches()) {  
+		        result = true;  
+		    }  
+		    return result;  
+	}
+	/**
+	 * 判断是否是自定义关键字
+	 * 包括表情符号
+	 * 
+	 * @param content
+	 * @return
+	 *
+	 */
+	public static boolean isKeyWord(String content){
+		boolean result=false;
+		String keyWord="抽奖|礼物|圣诞礼物|";
+		Pattern p=Pattern.compile(keyWord);
+		Matcher m=p.matcher(content);
+		if(m.matches()){
+			result=true;
+		}
+		return result;
+	}
+	
+	
+
+	
 }

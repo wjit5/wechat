@@ -21,13 +21,12 @@ public class MySQLUtil {
 	 * @return
 	 *
 	 */
-	private Connection getConn() {
+	public Connection getConn() {
 		String url = "jdbc:mysql://localhost:3306/weixin";
 		String username = "root";
 		String password = "123456";
 		Connection conn = null;
 		try {
-	
 			Class.forName("com.mysql.jdbc.Driver");
 		
 			conn = DriverManager.getConnection(url, username, password);
@@ -86,7 +85,7 @@ public class MySQLUtil {
 		}
 		 return picList;
 	}
-
+	
 
 	public static List<Knowledge> findAllKnowledge() {
 		List<Knowledge> knowledgeList = new ArrayList<Knowledge>();
