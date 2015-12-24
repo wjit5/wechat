@@ -22,8 +22,8 @@ import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
-import com.wjit.course.service.CoreService;
-import com.wjit.course.util.SignUtil;
+import com.wjit.course.service.main.CoreService;
+import com.wjit.course.util.main.SignUtil;
 
 /**
  * 请求处理的核心类

@@ -1,4 +1,4 @@
-package com.wjit.course.util;
+package com.wjit.course.util.main;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

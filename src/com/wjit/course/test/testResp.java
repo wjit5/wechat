@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.wjit.course.message.pojo.Picture;
-import com.wjit.course.util.MySQLUtil;
-import com.wjit.course.util.WeixinUtil;
+import com.wjit.course.util.main.MySQLUtil;
+import com.wjit.course.util.main.WeixinUtil;
 
 public class testResp {
 

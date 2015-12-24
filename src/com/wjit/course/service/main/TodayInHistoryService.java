@@ -1,4 +1,4 @@
-package com.wjit.course.service;
+package com.wjit.course.service.main;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

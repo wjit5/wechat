@@ -9,7 +9,7 @@ import com.wjit.course.message.pojo.CommonButton;
 import com.wjit.course.message.pojo.ComplexButton;
 import com.wjit.course.message.pojo.Menu;
 import com.wjit.course.message.pojo.ViewButton;
-import com.wjit.course.util.WeixinUtil;
+import com.wjit.course.util.main.WeixinUtil;
 /**
  * 菜单管理器类
  * 

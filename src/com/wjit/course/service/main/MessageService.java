@@ -1,4 +1,4 @@
-package com.wjit.course.service;
+package com.wjit.course.service.main;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.wjit.course.message.pojo.Knowledge;
 import com.wjit.course.message.pojo.Picture;
-import com.wjit.course.util.MySQLUtil;
+import com.wjit.course.util.main.MySQLUtil;
 
 /**
  * ¬ﬂº≠¥¶¿Ì¿‡
