@@ -22,9 +22,9 @@ public class MySQLUtil {
 	 *
 	 */
 	public Connection getConn() {
-		String url = "jdbc:mysql://123.57.92.114:3306/weixin";
+		String url = "jdbc:mysql://localhost:3306/weixin";
 		String username = "root";
-		String password = "root";
+		String password = "123456";
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
