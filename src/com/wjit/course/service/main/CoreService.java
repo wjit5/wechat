@@ -33,28 +33,31 @@ public class CoreService {
 			// 默认返回的文本消息内容
 			String respContent = "请求处理异常，请稍候尝试！";
 			String respImage = "";
+
 			// xml请求解析
 			Map<String, String> requestMap = MessageUtil.parseXml(request);
+
 			// 发送方帐号（open_id）
 			String fromUserName = requestMap.get("FromUserName");
 			// 公众帐号
 			String toUserName = requestMap.get("ToUserName");
 			// 消息类型
 			String msgType = requestMap.get("MsgType");
+
 			// 回复文本消息
 			TextMessage textMessage = new TextMessage();
 			textMessage.setToUserName(fromUserName);
 			textMessage.setFromUserName(toUserName);
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-			textMessage.setContent("欢迎关注火星人。。。\n"+WeixinUtil.getMainMenu());
+			textMessage.setContent("欢迎关注小剑。。。\n"+getMainMenu());
 			textMessage.setFuncFlag(0);
 			// 将文本消息对象转换成xml字符串
 			respMessage = MessageUtil.textMessageToXml(textMessage);
 			// 文本消息
 			if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
 				String content = requestMap.get("Content");
-				List<Object> list=new ArrayList<Object>();
+				List list=new ArrayList();
 				list.add(fromUserName);
 				list.add(toUserName);
 				list.add(content);
@@ -66,23 +69,45 @@ public class CoreService {
 				newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
 				newsMessage.setFuncFlag(0);
 				List<Article> articleList = new ArrayList<Article>();
-				if (WeixinUtil.isMenuNumer(content)){//根据菜单上面的数字回复相应图文信息
+				if (WeixinUtil.isMenuNumer(content)){//回复菜单
 					articleList=WeixinUtil.getTextResp(list);
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
 					respMessage = MessageUtil.newsMessageToXml(newsMessage);
-				}else if(WeixinUtil.isKeyWord(content)||WeixinUtil.isQqFace(content)){	//根据关键字回复一些文本内容
+				} else if(WeixinUtil.isQqFace(content)){//回复表情
+					// 回复文本消息  
+			        TextMessage textMessage2 = new TextMessage();  
+			        textMessage2.setToUserName(fromUserName);  
+			        textMessage2.setFromUserName(toUserName);  
+			        textMessage2.setCreateTime(new Date().getTime());  
+			        textMessage2.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);  
+			        textMessage2.setFuncFlag(0);  
+			        // 用户发什么QQ表情，就返回什么QQ表情  
+			        textMessage.setContent(content);  
+			        // 将文本消息对象转换成xml字符串  
+			        respMessage = MessageUtil.textMessageToXml(textMessage); 
+				}else if("菜单".equals(content)||"帮助".equals(content)||"?".equals(content)||"？".equals(content)){
 					TextMessage textMessage3 = new TextMessage();
 					textMessage3.setToUserName(fromUserName);
 					textMessage3.setFromUserName(toUserName);
 					textMessage3.setCreateTime(new Date().getTime());
 					textMessage3.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-					textMessage3.setContent(WeixinUtil.getKeyWordResp(list));
+					textMessage3.setContent("欢迎关注小剑。。。\n"+getMainMenu());
 					textMessage3.setFuncFlag(0);
 					// 将文本消息对象转换成xml字符串
 					respMessage = MessageUtil.textMessageToXml(textMessage3);
+				}else if("抽奖".equals(content)||"礼物".equals(content)||"圣诞礼物".equals(content)){
+					TextMessage textMessage4 = new TextMessage();
+					textMessage4.setToUserName(fromUserName);
+					textMessage4.setFromUserName(toUserName);
+					textMessage4.setCreateTime(new Date().getTime());
+					textMessage4.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
+					textMessage4.setContent(new ChoujiangService().choujMethod(content));
+					textMessage4.setFuncFlag(0);
+					// 将文本消息对象转换成xml字符串
+					respMessage = MessageUtil.textMessageToXml(textMessage4);
 				} else {
-					// 其他未设有关键字的通过智能机器人自动回复
+					// 其他问题
 					TextMessage textMessage3 = new TextMessage();
 					String apiresult = new TulingService().getTulingResult(content);
 					textMessage3.setToUserName(fromUserName);
@@ -269,5 +294,23 @@ public class CoreService {
 		return respMessage;
 	}
 
+	private static String getMainMenu() {
+		// TODO Auto-generated method stub
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("您好，我是小剑，请回复数字选择服务：").append("\n\n");
+		buffer.append("1     户外活动(未开放)").append("\n");
+		buffer.append("2     聚餐活动(未开放)").append("\n");
+		buffer.append("3     报名参加(未开放)").append("\n");
+		buffer.append("4     户外攻略").append("\n");
+		buffer.append("5     笑话连篇").append("\n");
+		buffer.append("6     推理故事").append("\n");
+		buffer.append("7     游戏中心").append("\n");
+		buffer.append("8     视频中心").append("\n");
+		buffer.append("9     联系我们 ").append("\n");
+		buffer.append("10  您也可以通过菜单栏选择需要的服务 ").append("\n\n");
+		buffer.append("回复“?”显示此帮助菜单");
+		return buffer.toString();
+
+	}
 
 }
