@@ -81,7 +81,7 @@
     <div class="login fr">
       <div class="loginmenu"><a title="登录或注册"></a></div>
       <ul>
-        <li class="openlogin"><a href="http://www.baidu.com/" onclick="return false;">登录</a></li>
+        <li class="openlogin"><a href="location=assets.jsp" onclick="return false;">登录</a></li>
         <li class="reg"><a href="http://www.baidu.com/" onclick="return false;">注册</a></li>
       </ul>
     </div>   
@@ -132,7 +132,7 @@
       <h4>用第三方帐号直接登录</h4>
       <ul>
         <li id="sinal"><a href="http://www.baidu.com/">微博账号登录</a></li>
-        <li id="qql"><a href="http://www.baidu.com/">QQ账号登录</a></li>
+        <li id="qql"><a href="assets.jsp">QQ账号登录</a></li>
         <div class="clear"></div>
       </ul>
       <div class="clear"></div>
@@ -146,7 +146,7 @@
     <h3>您可以选择以下第三方帐号直接登录jQuery插件库，一分钟完成注册</h3>
     <ul class="quicklogin_socical">
       <li class="quicklogin_socical_weibo"><a href="http://www.baidu.com/">微博帐号注册</a></li>
-      <li class="quicklogin_socical_qq"><a href="http://www.baidu.com/">QQ帐号注册</a></li>
+      <li class="quicklogin_socical_qq"><a href="assets.jsp">QQ帐号注册</a></li>
     </ul>
   </div>
 </div>
